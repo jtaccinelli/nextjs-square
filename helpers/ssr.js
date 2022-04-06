@@ -1,3 +1,5 @@
+import { getCatalog, getItemByHandle, parseSquareResponse } from "./square";
+
 export const buildGetPropsWrapper = (getNextProps) => {
   return (getPrevProps) => {
     return async (context) => {
@@ -20,19 +22,34 @@ export const buildGetPropsWrapper = (getNextProps) => {
   };
 };
 
-export const getSampleProps = buildGetPropsWrapper(async (context) => {
-  // Get async data
-  const data = {};
+export const getCollectionProps = buildGetPropsWrapper(async (context) => {
+  const data = await getCatalog();
 
-  // Return 404 if not found
   if (!data) {
     return {
       notFound: true,
     };
   }
 
-  // Otherwise return props
   return {
-    props: {},
+    props: {
+      catalog: parseSquareResponse(data) ?? null,
+    },
+  };
+});
+
+export const getProductProps = buildGetPropsWrapper(async (context) => {
+  const data = await getItemByHandle(context.query.handle);
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      item: parseSquareResponse(data) ?? null,
+    },
   };
 });

@@ -1,9 +1,9 @@
 import Navigation from "components/Navigation";
-import { getCollectionProps } from "helpers/ssr";
+import { getProductProps } from "helpers/ssr";
 import React from "react";
 
-const Page = ({ catalog }) => {
-  console.log(catalog);
+const Page = ({ item }) => {
+  console.log(item);
   return <Navigation />;
 };
 
@@ -13,6 +13,6 @@ const getProps = async (context) => {
   };
 };
 
-export const getServerSideProps = getCollectionProps(getProps);
+export const getServerSideProps = getProductProps(getProps);
 
 export default Page;

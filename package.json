@@ -20,7 +20,8 @@
     "react-dom": "18.0.0",
     "react-redux": "^7.2.8",
     "redux": "^4.1.2",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "square": "^17.3.0"
   },
   "devDependencies": {
     "eslint": "8.12.0",
